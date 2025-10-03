@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Tracking Kereta - KAI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="livetracking.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="https://keretaapikita.com/wp-content/uploads/2020/09/Logo-Baru-PT-KAI.jpg" alt="Logo KAI">
+                <span>KAI Barcode Checker</span>
+            </div>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="checkbarcode.html"><i class="fas fa-qrcode"></i> Scan Ticket</a>
+                <a href="livetracking.html"><i class="fas fa-map-marker-alt"></i> Live Tracking</a>
+                <a href="edukasi.html"><i class="fas fa-book"></i> Edukasi</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Live Tracking Kereta</h1>
+                <p>Ikuti perjalanan kereta api favorit Anda secara real-time</p>
+            </div>
+        </section>
+
+        <section class="tracking-section">
+            <div class="container">
+                <div class="tracking-controls">
+                    <h2>Pilih Kereta untuk Melacak</h2>
+                    <div class="search-box">
+                        <select id="trainSelect" class="train-select">
+                            <option value="">Pilih Kereta...</option>
+                            <option value="argobromo">Argo Bromo Anggrek</option>
+                            <option value="gajayana">Gajayana</option>
+                            <option value="sinarjaya">Sinar Jaya</option>
+                            <option value="taksaka">Taksaka</option>
+                            <option value="mutiara">Mutiara Timur</option>
+                            <option value="sriwijaya">Sriwijaya</option>
+                        </select>
+                        <button onclick="getTrainStatus()" class="track-btn">Cek Status</button>
+                    </div>
+                </div>
+
+                <div class="tracking-results" id="trackingResults">
+                    <div class="status-info">
+                        <h3>Status Perjalanan</h3>
+                        <p>Pilih kereta di atas untuk melihat status perjalanan.</p>
+                    </div>
+                </div>
+
+                <div class="tracking-map">
+                    <h3>Peta Perjalanan</h3>
+                    <div class="map-container">
+                        <img src="http://banner-access.krl.co.id/banner-access/assets/maps/ec710fada96648c85ea06f35410894c9.jpg" alt="Peta Jalur Kereta" style="width: 100%; border-radius: 10px;">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 PT KAI. All rights reserved.</p>
+            <div class="social-links">
+                <span>FOLLOW US ON @PT.KAI</span>
+                <a href="https://www.facebook.com/share/16Aip8YJVZ/"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/KAI121?t=Xe80o8vRYS3D147hmGnONQ&s=08"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/kai121_?igsh=MWVpeXB3cGlqdWh2dw=="><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function getTrainStatus() {
+            const trainSelect = document.getElementById('trainSelect');
+            const selectedTrain = trainSelect.value;
+            const trackingResults = document.getElementById('trackingResults');
+            
+            if (!selectedTrain) {
+                alert("Silakan pilih kereta terlebih dahulu!");
+                return;
+            }
+            
+            // Simulate different statuses based on random selection
+            const statuses = [
+                { name: 'departure', label: 'Berangkat', icon: 'flag-checkered' },
+                { name: 'traveling', label: 'Dalam Perjalanan', icon: 'train' },
+                { name: 'arriving', label: 'Akan Tiba', icon: 'clock' },
+                { name: 'arrived', label: 'Tiba', icon: 'flag-checkered' }
+            ];
+            
+            const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+            
+            const trainNames = {
+                'argobromo': 'Argo Bromo Anggrek',
+                'gajayana': 'Gajayana',
+                'sinarjaya': 'Sinar Jaya',
+                'taksaka': 'Taksaka',
+                'mutiara': 'Mutiara Timur',
+                'sriwijaya': 'Sriwijaya'
+            };
+            
+            trackingResults.innerHTML = `
+                <div class="train-status">
+                    <div class="status-header">
+                        <h3>${trainNames[selectedTrain]}</h3>
+                        <div class="status-badge ${randomStatus.name}">
+                            <i class="fas fa-${randomStatus.icon}"></i>
+                            <span>${randomStatus.label}</span>
+                        </div>
+                    </div>
+                    <div class="status-details">
+                        <p><strong>Stasiun Saat Ini:</strong> ${
+                            randomStatus.name === 'departure' ? 'Stasiun Awal' :
+                            randomStatus.name === 'arrived' ? 'Stasiun Akhir' :
+                            'Di Perjalanan'
+                        }</p>
+                        <p><strong>Waktu Terakhir Update:</strong> ${new Date().toLocaleTimeString()}</p>
+                        <p><strong>Estimasi Waktu Tiba:</strong> ${
+                            randomStatus.name === 'departure' ? '2 jam 30 menit' :
+                            randomStatus.name === 'traveling' ? '1 jam 15 menit' :
+                            randomStatus.name === 'arriving' ? '15 menit lagi' :
+                            'Telah Tiba'
+                        }</p>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

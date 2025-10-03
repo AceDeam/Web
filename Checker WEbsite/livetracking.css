@@ -1,0 +1,107 @@
+/* Live Tracking Page Specific Styles */
+.tracking-section {
+    padding: 60px 0;
+}
+
+.status-info {
+    text-align: center;
+    padding: 40px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.status-info h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.search-box {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+.train-select {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 250px;
+}
+
+.track-btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.track-btn:hover {
+    background-color: #001f44;
+}
+
+.tracking-results {
+    margin-top: 30px;
+}
+
+.train-status {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.status-header {
+    padding: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+.status-badge i {
+    font-size: 1.2rem;
+}
+
+.status-details {
+    padding: 20px;
+}
+
+.status-details p {
+    margin-bottom: 10px;
+}
+
+.departure { color: var(--warning-color); }
+.traveling { color: var(--primary-color); }
+.arriving { color: var(--warning-color); }
+.arrived { color: var(--success-color); }
+
+.tracking-map {
+    margin-top: 40px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.map-container {
+    border-radius: 10px;
+    overflow: hidden;
+}

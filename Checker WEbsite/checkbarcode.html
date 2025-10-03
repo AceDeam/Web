@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifikasi Barcode Tiket - KAI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="checkbarcode.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="https://keretaapikita.com/wp-content/uploads/2020/09/Logo-Baru-PT-KAI.jpg" alt="Logo KAI">
+                <span>KAI Barcode Checker</span>
+            </div>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="checkbarcode.html"><i class="fas fa-qrcode"></i> Scan Ticket</a>
+                <a href="livetracking.html"><i class="fas fa-map-marker-alt"></i> Live Tracking</a>
+                <a href="edukasi.html"><i class="fas fa-book"></i> Edukasi</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Verifikasi Barcode Tiket</h1>
+                <p>Memastikan tiket Anda adalah asli dan aman digunakan</p>
+            </div>
+        </section>
+
+        <section class="barcode-section">
+            <div class="container">
+                <div class="barcode-form">
+                    <h2>Scan Tiket Anda</h2>
+                    <p>Masukkan nomor barcode tiket kereta Anda untuk memverifikasi keasliannya:</p>
+                    
+                    <div class="form-group">
+                        <label for="barcodeInput">Nomor Barcode Tiket:</label>
+                        <input type="text" id="barcodeInput" class="barcode-input" placeholder="Contoh: KAI-20231015-ABC123">
+                    </div>
+                    
+                    <button onclick="checkBarcode()" class="scan-btn">Periksa Barcode</button>
+                    
+                    <div id="resultContainer"></div>
+                </div>
+                
+                <div class="how-it-works">
+                    <h3>Cara Kerja Verifikasi</h3>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>Masukkan Nomor Barcode</h4>
+                            <p>Ketikkan nomor barcode yang tertera pada tiket Anda.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>Proses Verifikasi</h4>
+                            <p>Sistem akan memeriksa database KAI untuk mencocokkan nomor tersebut.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>Dapatkan Hasil</h4>
+                            <p>Anda akan mendapatkan konfirmasi apakah tiket Anda asli atau palsu.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 PT KAI. All rights reserved.</p>
+            <div class="social-links">
+                <span>FOLLOW US ON @PT.KAI</span>
+                <a href="https://www.facebook.com/share/16Aip8YJVZ/"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/KAI121?t=Xe80o8vRYS3D147hmGnONQ&s=08"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/kai121_?igsh=MWVpeXB3cGlqdWh2dw=="><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function checkBarcode() {
+            const barcode = document.getElementById('barcodeInput').value.trim();
+            const resultContainer = document.getElementById('resultContainer');
+            
+            if (!barcode) {
+                alert("Silakan masukkan nomor barcode tiket!");
+                return;
+            }
+            
+            // Simulate API call
+            setTimeout(() => {
+                const isValid = Math.random() > 0.3; // 70% chance of being valid
+                
+                let resultHTML = '';
+                if (isValid) {
+                    resultHTML = `
+                        <div class="result valid">
+                            <div class="result-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <h3>Tiket Valid!</h3>
+                            <p>Nomor barcode ${barcode} telah diverifikasi sebagai tiket asli PT KAI.</p>
+                            <p>Anda aman untuk melakukan perjalanan.</p>
+                        </div>
+                    `;
+                } else {
+                    resultHTML = `
+                        <div class="result invalid">
+                            <div class="result-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <h3>Peringatan!</h3>
+                            <p>Nomor barcode ${barcode} tidak ditemukan dalam sistem PT KAI.</p>
+                            <p>Tiket ini kemungkinan palsu atau sudah kadaluarsa.</p>
+                            <button class="btn edu-btn" onclick="showConfirmation()">Lanjutkan ke Edukasi</button>
+                        </div>
+                    `;
+                }
+                
+                resultContainer.innerHTML = resultHTML;
+            }, 1000);
+        }
+        
+        function showConfirmation() {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h3>Informasi Penting</h3>
+                    <p>Tiket Anda tampaknya tidak valid. Untuk melindungi diri Anda dari penipuan, kami sarankan Anda membaca materi edukasi tentang cara menghindari penipuan tiket kereta.</p>
+                    <p>Apakah Anda ingin langsung diarahkan ke halaman edukasi?</p>
+                    <button class="btn" onclick="goToEducation()">Ya, Saya Setuju</button>
+                    <button class="btn secondary" onclick="closeModal()">Tidak Sekarang</button>    
+                </div>
+            `;
+            document.body.appendChild(modal);
+            
+            // Add event listeners
+            modal.querySelector('.close').addEventListener('click', () => modal.remove());
+            modal.querySelector('.secondary').addEventListener('click', () => modal.remove());
+        }
+        
+        function goToEducation() {
+            window.location.href = 'edukasi.html';
+        }
+        
+        function closeModal() {
+            document.querySelector('.modal')?.remove();
+        }
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+/* Edukasi Section Styles */
+.education-section {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+}
+
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.edu-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.edu-card:hover {
+    transform: translateY(-5px);
+}
+
+.edu-card-img img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.edu-card-content {
+    padding: 25px;
+}
+
+.edu-card-content h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.edu-card-content ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+.edu-card-content li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.edu-card-content li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #3498db;
+    font-weight: bold;
+}
+
+.btn.learn-more {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn.learn-more:hover {
+    background-color: #2980b9;
+}
+
+/* FAQ Section Styles */
+.faq-section {
+    margin-top: 60px;
+    padding: 0 20px;
+}
+
+.faq-section h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+.faq-item {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+}
+
+.faq-question {
+    padding: 18px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: #f1f7ff;
+}
+
+.faq-question h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.faq-icon {
+    color: #3498db;
+    transition: transform 0.3s ease;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background-color: #f8f9fa;
+    padding: 0 20px;
+}
+
+.faq-answer.active {
+    max-height: 200px;
+    padding: 20px;
+}
